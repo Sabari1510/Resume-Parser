@@ -1,0 +1,44 @@
+---
+let inputValue = '';
+
+export interface Props {
+  onGenerate: (input: string) => void;
+}
+
+const { onGenerate } = Astro.props;
+
+const generateRoadmap = (input) => {
+  // Simple implementation for generating a roadmap
+  return `Roadmap based on: ${input}`;
+};
+
+const displayRoadmap = (roadmap) => {
+  // Display the generated roadmap in a simple way
+  alert(roadmap); // For demonstration, using alert to show the roadmap
+};
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  // Generate roadmap based on inputValue
+  const roadmap = generateRoadmap(inputValue);
+  displayRoadmap(roadmap);
+};
+
+
+
+---
+
+<form onSubmit={handleSubmit} class="flex flex-col" id="roadmap-form">
+
+  <label htmlFor="roadmap-input" class="mb-2">Enter your prompt for the roadmap:</label>
+  <input
+    id="roadmap-input"
+    type="text"
+    onInput={(e) => inputValue = e.target.value}
+    class="border rounded p-2 mb-2"
+    required
+  />
+  <button type="submit" class="bg-blue-500 text-white rounded p-2">Generate Roadmap</button>
+
+
+</form>
